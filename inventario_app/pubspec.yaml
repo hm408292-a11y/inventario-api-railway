@@ -1,0 +1,27 @@
+name: inventario_app
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '^3.13.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.6
+  fl_chart: ^0.63.0
+  mobile_scanner: ^5.2.0
+  path_provider: ^2.0.11
+  open_file: ^3.2.1
+  image_picker: ^1.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - assets/logo_inventario.png   👈 comentado porque el archivo no existe
