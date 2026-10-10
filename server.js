@@ -17,7 +17,7 @@ app.use(cors());
 
 const SECRET = "clave_secreta_inventario";
 
-// 🔥 CAMBIO 1: Conexión usando variables de entorno de Railway
+// 🔥 CONEXIÓN USANDO POOL (Soluciona el error de "Connection is closed")
 const conexion = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
@@ -598,7 +598,7 @@ app.use("/uploads", express.static(CARPETA_UPLOADS));
 
 app.get("/generar-qr", (req, res) => { generarTodosLosQR(); res.json({ status: "ok" }); });
 
-// 🔥 CAMBIO 2: Puerto dinámico para Railway
+// 🔥 Puerto dinámico para Railway
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
