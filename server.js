@@ -18,20 +18,27 @@ app.use(cors());
 const SECRET = "clave_secreta_inventario";
 
 // 🔥 CAMBIO 1: Conexión usando variables de entorno de Railway
-const conexion = mysql.createConnection({
+const conexion = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
   port: process.env.MYSQLPORT,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 0,
 });
 
-conexion.connect((err) => {
+// Probar conexión
+conexion.getConnection((err, conn) => {
   if (err) {
     console.error("❌ Error al conectar a la base de datos:", err);
     return;
   }
   console.log("✅ Conectado a MySQL/MariaDB (Railway)");
+  conn.release();
   generarTodosLosQR();
 });
 

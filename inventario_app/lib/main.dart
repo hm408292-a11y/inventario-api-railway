@@ -9,7 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
 import 'package:image_picker/image_picker.dart';
 
-const String ipServidor = "192.168.1.115";
+// ⚠️ REEMPLAZA ESTA URL POR TU URL REAL DE RAILWAY
+const String ipServidor = "https://imaginative-endurance-production-f769.up.railway.app";
 
 String? tokenGlobal;
 String? rolGlobal;
@@ -60,7 +61,7 @@ class LoginScreenState extends State<LoginScreen> {
     }
 
     setState(() => cargando = true);
-    final url = Uri.parse("http://$ipServidor:3000/login");
+    final url = Uri.parse("$ipServidor/login");
 
     try {
       final response = await http
@@ -137,8 +138,7 @@ class LoginScreenState extends State<LoginScreen> {
           hintStyle: TextStyle(color: Colors.white.withOpacity(0.55)),
           prefixIcon: Icon(icon, color: azulClaro, size: 22),
           border: InputBorder.none,
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
         ),
       ),
     );
@@ -223,8 +223,7 @@ class LoginScreenState extends State<LoginScreen> {
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                                 child: Container(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(24, 60, 24, 28),
+                                  padding: const EdgeInsets.fromLTRB(24, 60, 24, 28),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.07),
                                     borderRadius: BorderRadius.circular(28),
@@ -242,8 +241,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     ],
                                   ),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
                                       const Text(
                                         "Iniciar Sesión",
@@ -260,8 +258,7 @@ class LoginScreenState extends State<LoginScreen> {
                                         "Bienvenido de nuevo",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          color:
-                                              Colors.white.withOpacity(0.55),
+                                          color: Colors.white.withOpacity(0.55),
                                           fontSize: 13,
                                         ),
                                       ),
@@ -283,22 +280,18 @@ class LoginScreenState extends State<LoginScreen> {
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: azulPrincipal,
                                           foregroundColor: Colors.white,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 18),
+                                          padding: const EdgeInsets.symmetric(vertical: 18),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
+                                            borderRadius: BorderRadius.circular(16),
                                           ),
                                           elevation: 10,
-                                          shadowColor:
-                                              azulPrincipal.withOpacity(0.6),
+                                          shadowColor: azulPrincipal.withOpacity(0.6),
                                         ),
                                         child: cargando
                                             ? const SizedBox(
                                                 height: 22,
                                                 width: 22,
-                                                child:
-                                                    CircularProgressIndicator(
+                                                child: CircularProgressIndicator(
                                                   color: Colors.white,
                                                   strokeWidth: 3,
                                                 ),
@@ -324,9 +317,7 @@ class LoginScreenState extends State<LoginScreen> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
-                              border: Border.all(
-                                  color: Colors.white.withOpacity(0.3),
-                                  width: 2),
+                              border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
                               boxShadow: [
                                 BoxShadow(
                                   color: azulPrincipal.withOpacity(0.6),
@@ -441,8 +432,7 @@ class PanelAdmin extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text("Bienvenido",
-                              style: TextStyle(
-                                  color: Colors.white70, fontSize: 15)),
+                              style: TextStyle(color: Colors.white70, fontSize: 15)),
                           const SizedBox(height: 4),
                           Text(nombreGlobal ?? "Administrador",
                               style: const TextStyle(
@@ -466,10 +456,8 @@ class PanelAdmin extends StatelessWidget {
                 texto: "Gestionar Materiales",
                 icono: Icons.inventory_2,
                 color: const Color(0xFF795548),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const GestionMateriales())),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const GestionMateriales())),
               ),
               const SizedBox(height: 10),
               _BotonCapsula(
@@ -516,20 +504,16 @@ class PanelAdmin extends StatelessWidget {
                 texto: "Reportes Filtrados (PDF/Excel)",
                 icono: Icons.filter_alt_rounded,
                 color: const Color(0xFF00BCD4),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const ReportesFiltrados())),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const ReportesFiltrados())),
               ),
               const SizedBox(height: 10),
               _BotonCapsula(
                 texto: "Historial de Préstamos (Guía 17)",
                 icono: Icons.history_rounded,
                 color: const Color(0xFF673AB7),
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const HistorialPrestamos())),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const HistorialPrestamos())),
               ),
               const SizedBox(height: 24),
             ],
@@ -541,7 +525,7 @@ class PanelAdmin extends StatelessWidget {
 }
 
 /* ============================================================
-   GUÍA 16: GESTIÓN DE MATERIALES (con categoría y foto)
+   GUÍA 16: GESTIÓN DE MATERIALES
    ============================================================ */
 class GestionMateriales extends StatefulWidget {
   const GestionMateriales({super.key});
@@ -561,7 +545,7 @@ class GestionMaterialesState extends State<GestionMateriales> {
     });
     try {
       final res = await http.get(
-        Uri.parse("http://$ipServidor:3000/materiales"),
+        Uri.parse("$ipServidor/materiales"),
         headers: {"Authorization": "Bearer ${tokenGlobal ?? ""}"},
       );
       setState(() {
@@ -604,7 +588,7 @@ class GestionMaterialesState extends State<GestionMateriales> {
 
     try {
       final res = await http.delete(
-        Uri.parse("http://$ipServidor:3000/materiales/$id"),
+        Uri.parse("$ipServidor/materiales/$id"),
         headers: {"Authorization": "Bearer ${tokenGlobal ?? ""}"},
       );
       final data = jsonDecode(res.body);
@@ -651,11 +635,9 @@ class GestionMaterialesState extends State<GestionMateriales> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.error_outline,
-                            size: 60, color: Colors.red),
+                        const Icon(Icons.error_outline, size: 60, color: Colors.red),
                         const SizedBox(height: 12),
-                        Text("Error: $errorMensaje",
-                            textAlign: TextAlign.center),
+                        Text("Error: $errorMensaje", textAlign: TextAlign.center),
                         const SizedBox(height: 12),
                         ElevatedButton(
                           onPressed: cargarMateriales,
@@ -683,10 +665,9 @@ class GestionMaterialesState extends State<GestionMateriales> {
                               contentPadding: const EdgeInsets.all(10),
                               leading: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: foto != null &&
-                                        foto.toString().isNotEmpty
+                                child: foto != null && foto.toString().isNotEmpty
                                     ? Image.network(
-                                        "http://$ipServidor:3000/$foto",
+                                        "$ipServidor/$foto",
                                         width: 60,
                                         height: 60,
                                         fit: BoxFit.cover,
@@ -701,16 +682,14 @@ class GestionMaterialesState extends State<GestionMateriales> {
                                     : Container(
                                         width: 60,
                                         height: 60,
-                                        color: const Color(0xFF3F51B5)
-                                            .withOpacity(0.2),
+                                        color: const Color(0xFF3F51B5).withOpacity(0.2),
                                         child: const Icon(Icons.inventory_2,
                                             color: Color(0xFF3F51B5)),
                                       ),
                               ),
                               title: Text(
                                 m['nombre'] ?? 'Sin nombre',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
                                 "Categoría: ${m['categoria'] ?? 'Sin categoría'}\n"
@@ -721,22 +700,19 @@ class GestionMaterialesState extends State<GestionMateriales> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
-                                    icon: const Icon(Icons.edit,
-                                        color: Colors.orange),
+                                    icon: const Icon(Icons.edit, color: Colors.orange),
                                     onPressed: () async {
                                       await Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (_) => FormularioMaterial(
-                                              material: m),
+                                          builder: (_) => FormularioMaterial(material: m),
                                         ),
                                       );
                                       cargarMateriales();
                                     },
                                   ),
                                   IconButton(
-                                    icon: const Icon(Icons.delete,
-                                        color: Colors.red),
+                                    icon: const Icon(Icons.delete, color: Colors.red),
                                     onPressed: () => eliminar(m['id']),
                                   ),
                                 ],
@@ -765,13 +741,7 @@ class FormularioMaterialState extends State<FormularioMaterial> {
   File? fotoSeleccionada;
   bool guardando = false;
 
-  List<String> categorias = [
-    "Deportes",
-    "Laboratorio",
-    "Tecnología",
-    "Oficina",
-    "General"
-  ];
+  List<String> categorias = ["Deportes", "Laboratorio", "Tecnología", "Oficina", "General"];
   List<String> estados = ["bueno", "regular", "dañado"];
 
   @override
@@ -816,9 +786,8 @@ class FormularioMaterialState extends State<FormularioMaterial> {
 
     try {
       final uri = widget.material == null
-          ? Uri.parse("http://$ipServidor:3000/materiales")
-          : Uri.parse(
-              "http://$ipServidor:3000/materiales/${widget.material!['id']}");
+          ? Uri.parse("$ipServidor/materiales")
+          : Uri.parse("$ipServidor/materiales/${widget.material!['id']}");
 
       final request = http.MultipartRequest(
         widget.material == null ? "POST" : "PUT",
@@ -1008,7 +977,7 @@ class DashboardAdminState extends State<DashboardAdmin> {
   bool cargando = true;
 
   Future<void> obtenerDatos() async {
-    final url = Uri.parse("http://$ipServidor:3000/dashboard");
+    final url = Uri.parse("$ipServidor/dashboard");
     try {
       final response = await http.get(
         url,
@@ -1032,8 +1001,7 @@ class DashboardAdminState extends State<DashboardAdmin> {
     obtenerDatos();
   }
 
-  Widget _buildCard(
-      String titulo, dynamic valor, Color color, IconData icono) {
+  Widget _buildCard(String titulo, dynamic valor, Color color, IconData icono) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
@@ -1118,21 +1086,18 @@ class DashboardAdminState extends State<DashboardAdmin> {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        _buildCard(
-                            "Total Materiales",
-                            datos["total_materiales"],
-                            Colors.blue,
-                            Icons.inventory_2),
-                        _buildCard("Prestados", datos["prestados"],
-                            Colors.orange, Icons.assignment),
+                        _buildCard("Total Materiales",
+                            datos["total_materiales"], Colors.blue, Icons.inventory_2),
+                        _buildCard("Prestados",
+                            datos["prestados"], Colors.orange, Icons.assignment),
                       ],
                     ),
                     Row(
                       children: [
-                        _buildCard("Devueltos", datos["devueltos"],
-                            Colors.green, Icons.check_circle),
-                        _buildCard("Dañados", datos["danados"], Colors.red,
-                            Icons.warning),
+                        _buildCard("Devueltos",
+                            datos["devueltos"], Colors.green, Icons.check_circle),
+                        _buildCard("Dañados",
+                            datos["danados"], Colors.red, Icons.warning),
                       ],
                     ),
                     const SizedBox(height: 24),
@@ -1223,8 +1188,7 @@ class _Leyenda extends StatelessWidget {
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: 6),
-        Text(texto,
-            style: const TextStyle(color: Colors.white70, fontSize: 13)),
+        Text(texto, style: const TextStyle(color: Colors.white70, fontSize: 13)),
       ],
     );
   }
@@ -1256,12 +1220,8 @@ class GestionPermisosState extends State<GestionPermisos> {
   Future<void> cargarDatos() async {
     final headers = {"Authorization": "Bearer ${tokenGlobal ?? ""}"};
     try {
-      final resMat = await http.get(
-          Uri.parse("http://$ipServidor:3000/materiales"),
-          headers: headers);
-      final resDoc = await http.get(
-          Uri.parse("http://$ipServidor:3000/usuarios?rol=maestro"),
-          headers: headers);
+      final resMat = await http.get(Uri.parse("$ipServidor/materiales"), headers: headers);
+      final resDoc = await http.get(Uri.parse("$ipServidor/usuarios?rol=maestro"), headers: headers);
 
       setState(() {
         materiales = parsearLista(resMat.body);
@@ -1271,9 +1231,7 @@ class GestionPermisosState extends State<GestionPermisos> {
     } catch (e) {
       setState(() => cargando = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text("Error al cargar datos: $e"),
-            duration: const Duration(seconds: 5)),
+        SnackBar(content: Text("Error al cargar datos: $e"), duration: const Duration(seconds: 5)),
       );
     }
   }
@@ -1285,7 +1243,7 @@ class GestionPermisosState extends State<GestionPermisos> {
       );
       return;
     }
-    final url = Uri.parse("http://$ipServidor:3000/permisos");
+    final url = Uri.parse("$ipServidor/permisos");
     try {
       final response = await http.post(
         url,
@@ -1303,9 +1261,7 @@ class GestionPermisosState extends State<GestionPermisos> {
       );
       final data = jsonDecode(response.body);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content:
-                Text("Respuesta: ${data["mensaje"] ?? response.body}")),
+        SnackBar(content: Text("Respuesta: ${data["mensaje"] ?? response.body}")),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -1325,8 +1281,7 @@ class GestionPermisosState extends State<GestionPermisos> {
             icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.pop(context)),
         title: const Text("Gestión de Permisos",
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: cargando
@@ -1348,8 +1303,7 @@ class GestionPermisosState extends State<GestionPermisos> {
                           child: Text(d["nombre"]),
                         );
                       }).toList(),
-                      onChanged: (v) =>
-                          setState(() => docenteSeleccionado = v),
+                      onChanged: (v) => setState(() => docenteSeleccionado = v),
                     ),
                     const SizedBox(height: 16),
                     DropdownButtonFormField<String>(
@@ -1364,8 +1318,7 @@ class GestionPermisosState extends State<GestionPermisos> {
                           child: Text(m["nombre"]),
                         );
                       }).toList(),
-                      onChanged: (v) =>
-                          setState(() => materialSeleccionado = v),
+                      onChanged: (v) => setState(() => materialSeleccionado = v),
                     ),
                     const SizedBox(height: 20),
                     SwitchListTile(
@@ -1389,14 +1342,12 @@ class GestionPermisosState extends State<GestionPermisos> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF4CAF50),
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                       ),
                       child: const Text("Asignar Permiso",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -1471,8 +1422,7 @@ class PanelMaestro extends StatelessWidget {
                         color: Colors.white.withOpacity(0.2),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.school,
-                          color: Colors.white, size: 34),
+                      child: const Icon(Icons.school, color: Colors.white, size: 34),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
@@ -1480,8 +1430,8 @@ class PanelMaestro extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text("Bienvenido",
-                              style: TextStyle(
-                                  color: Colors.white70, fontSize: 15)),
+                              style:
+                                  TextStyle(color: Colors.white70, fontSize: 15)),
                           const SizedBox(height: 4),
                           Text(
                             maestroNombre,
@@ -1518,8 +1468,7 @@ class PanelMaestro extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) =>
-                        EscaneoQR(maestro: maestroNombre, esRetiro: true),
+                    builder: (_) => EscaneoQR(maestro: maestroNombre, esRetiro: true),
                   ),
                 ),
               ),
@@ -1531,8 +1480,7 @@ class PanelMaestro extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) =>
-                        EscaneoQR(maestro: maestroNombre, esRetiro: false),
+                    builder: (_) => EscaneoQR(maestro: maestroNombre, esRetiro: false),
                   ),
                 ),
               ),
@@ -1624,8 +1572,7 @@ class _BotonCapsula extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios,
-                    color: Colors.white70, size: 14),
+                const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 14),
               ],
             ),
           ),
@@ -1665,7 +1612,7 @@ class EscaneoQRState extends State<EscaneoQR> {
     await controller.stop();
 
     if (widget.esRetiro) {
-      final url = Uri.parse("http://$ipServidor:3000/prestamos");
+      final url = Uri.parse("$ipServidor/prestamos");
       try {
         final response = await http.post(
           url,
@@ -1682,9 +1629,7 @@ class EscaneoQRState extends State<EscaneoQR> {
         final data = jsonDecode(response.body);
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text("Retiro: ${data["mensaje"] ?? response.body}")),
+          SnackBar(content: Text("Retiro: ${data["mensaje"] ?? response.body}")),
         );
       } catch (e) {
         if (!mounted) return;
@@ -1693,8 +1638,7 @@ class EscaneoQRState extends State<EscaneoQR> {
         );
       }
     } else {
-      final url = Uri.parse(
-          "http://$ipServidor:3000/prestamos/devolver/mat/$materialId");
+      final url = Uri.parse("$ipServidor/prestamos/devolver/mat/$materialId");
       try {
         final response = await http.put(
           url,
@@ -1703,9 +1647,7 @@ class EscaneoQRState extends State<EscaneoQR> {
         final data = jsonDecode(response.body);
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text("Entrega: ${data["mensaje"] ?? response.body}")),
+          SnackBar(content: Text("Entrega: ${data["mensaje"] ?? response.body}")),
         );
       } catch (e) {
         if (!mounted) return;
@@ -1727,9 +1669,8 @@ class EscaneoQRState extends State<EscaneoQR> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.esRetiro ? "Escanear Retiro" : "Escanear Entrega"),
-        backgroundColor: widget.esRetiro
-            ? const Color(0xFF4CAF50)
-            : const Color(0xFFFF9800),
+        backgroundColor:
+            widget.esRetiro ? const Color(0xFF4CAF50) : const Color(0xFFFF9800),
       ),
       body: Column(
         children: [
@@ -1746,8 +1687,8 @@ class EscaneoQRState extends State<EscaneoQR> {
                     : (widget.esRetiro
                         ? "Apunta al QR para registrar el RETIRO"
                         : "Apunta al QR para registrar la ENTREGA"),
-                style: const TextStyle(
-                    fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -1777,8 +1718,7 @@ class NotificacionesMaestroState extends State<NotificacionesMaestro> {
       cargando = true;
       errorMensaje = null;
     });
-    final url =
-        Uri.parse("http://$ipServidor:3000/notificaciones/${idGlobal ?? 0}");
+    final url = Uri.parse("$ipServidor/notificaciones/${idGlobal ?? 0}");
     try {
       final response = await http.get(
         url,
@@ -1814,13 +1754,11 @@ class NotificacionesMaestroState extends State<NotificacionesMaestro> {
               ? Center(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Text("Error: $errorMensaje",
-                        textAlign: TextAlign.center),
+                    child: Text("Error: $errorMensaje", textAlign: TextAlign.center),
                   ),
                 )
               : pendientes.isEmpty
-                  ? const Center(
-                      child: Text("No tienes préstamos pendientes"))
+                  ? const Center(child: Text("No tienes préstamos pendientes"))
                   : RefreshIndicator(
                       onRefresh: obtenerPendientes,
                       child: ListView.builder(
@@ -1828,10 +1766,8 @@ class NotificacionesMaestroState extends State<NotificacionesMaestro> {
                         itemBuilder: (context, index) {
                           final p = pendientes[index];
                           return ListTile(
-                            title: Text(
-                                "Material: ${p['material'] ?? 'Desconocido'}"),
-                            subtitle: Text(
-                                "Fecha préstamo: ${p['fecha_prestamo']}"),
+                            title: Text("Material: ${p['material'] ?? 'Desconocido'}"),
+                            subtitle: Text("Fecha préstamo: ${p['fecha_prestamo']}"),
                             trailing: const Text("Pendiente",
                                 style: TextStyle(color: Colors.orange)),
                           );
@@ -1869,12 +1805,8 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
   Future<void> cargarDatos() async {
     final headers = {"Authorization": "Bearer ${tokenGlobal ?? ""}"};
     try {
-      final resMat = await http.get(
-          Uri.parse("http://$ipServidor:3000/materiales"),
-          headers: headers);
-      final resDoc = await http.get(
-          Uri.parse("http://$ipServidor:3000/usuarios?rol=maestro"),
-          headers: headers);
+      final resMat = await http.get(Uri.parse("$ipServidor/materiales"), headers: headers);
+      final resDoc = await http.get(Uri.parse("$ipServidor/usuarios?rol=maestro"), headers: headers);
 
       setState(() {
         materiales = parsearLista(resMat.body);
@@ -1887,9 +1819,7 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
     } catch (e) {
       setState(() => cargando = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text("Error al cargar datos: $e"),
-            duration: const Duration(seconds: 5)),
+        SnackBar(content: Text("Error al cargar datos: $e"), duration: const Duration(seconds: 5)),
       );
     }
   }
@@ -1924,7 +1854,7 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
       return;
     }
 
-    final url = Uri.parse("http://$ipServidor:3000/prestamos");
+    final url = Uri.parse("$ipServidor/prestamos");
     try {
       final response = await http.post(
         url,
@@ -1940,8 +1870,7 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
       );
       final data = jsonDecode(response.body);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text("Respuesta: ${data["mensaje"] ?? response.body}")),
+        SnackBar(content: Text("Respuesta: ${data["mensaje"] ?? response.body}")),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -1997,8 +1926,7 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
             icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.pop(context)),
         title: const Text("Registro de Préstamos",
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: cargando
@@ -2021,8 +1949,7 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
                           child: Text(m["nombre"]),
                         );
                       }).toList(),
-                      onChanged: (v) =>
-                          setState(() => materialSeleccionado = v),
+                      onChanged: (v) => setState(() => materialSeleccionado = v),
                     ),
                     const SizedBox(height: 16),
                     DropdownButtonFormField<String>(
@@ -2058,8 +1985,7 @@ class RegistroPrestamoState extends State<RegistroPrestamo> {
                             borderRadius: BorderRadius.circular(12)),
                       ),
                       child: const Text("Registrar Préstamo",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -2086,7 +2012,7 @@ class ListaPrestamosState extends State<ListaPrestamos> {
       cargando = true;
       errorMensaje = null;
     });
-    final url = Uri.parse("http://$ipServidor:3000/prestamos");
+    final url = Uri.parse("$ipServidor/prestamos");
     try {
       final response = await http.get(
         url,
@@ -2122,7 +2048,7 @@ class ListaPrestamosState extends State<ListaPrestamos> {
     if (picked != null) {
       String fecha =
           "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
-      final url = Uri.parse("http://$ipServidor:3000/prestamos/$id");
+      final url = Uri.parse("$ipServidor/prestamos/$id");
       try {
         final response = await http.put(
           url,
@@ -2145,7 +2071,7 @@ class ListaPrestamosState extends State<ListaPrestamos> {
   }
 
   Future<void> _marcarDevuelto(int id) async {
-    final url = Uri.parse("http://$ipServidor:3000/prestamos/devolver/$id");
+    final url = Uri.parse("$ipServidor/prestamos/devolver/$id");
     try {
       final response = await http.put(
         url,
@@ -2175,11 +2101,9 @@ class ListaPrestamosState extends State<ListaPrestamos> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.error_outline,
-                            size: 60, color: Colors.red),
+                        const Icon(Icons.error_outline, size: 60, color: Colors.red),
                         const SizedBox(height: 12),
-                        Text("Error: $errorMensaje",
-                            textAlign: TextAlign.center),
+                        Text("Error: $errorMensaje", textAlign: TextAlign.center),
                         const SizedBox(height: 12),
                         ElevatedButton(
                           onPressed: obtenerPrestamos,
@@ -2198,13 +2122,10 @@ class ListaPrestamosState extends State<ListaPrestamos> {
                         itemBuilder: (context, index) {
                           final p = prestamos[index];
                           return Card(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
+                            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             child: ListTile(
-                              leading: const Icon(Icons.assignment,
-                                  color: Color(0xFF3F51B5)),
-                              title: Text(
-                                  "Material: ${p['material'] ?? 'Sin nombre'}"),
+                              leading: const Icon(Icons.assignment, color: Color(0xFF3F51B5)),
+                              title: Text("Material: ${p['material'] ?? 'Sin nombre'}"),
                               subtitle: Text(
                                 "Docente: ${p['docente'] ?? 'Desconocido'}\n"
                                 "Préstamo: ${p['fecha_prestamo']}\n"
@@ -2214,14 +2135,11 @@ class ListaPrestamosState extends State<ListaPrestamos> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
-                                    icon: const Icon(Icons.edit,
-                                        color: Colors.orange),
-                                    onPressed: () =>
-                                        _editarDevolucion(p['id']),
+                                    icon: const Icon(Icons.edit, color: Colors.orange),
+                                    onPressed: () => _editarDevolucion(p['id']),
                                   ),
                                   IconButton(
-                                    icon: const Icon(Icons.check_circle,
-                                        color: Colors.green),
+                                    icon: const Icon(Icons.check_circle, color: Colors.green),
                                     onPressed: () => _marcarDevuelto(p['id']),
                                   ),
                                 ],
@@ -2249,11 +2167,9 @@ class ReportesAdminState extends State<ReportesAdmin> {
   bool cargando = true;
 
   Future<void> obtenerReportes() async {
-    final urlTotal = Uri.parse("http://$ipServidor:3000/reportes/total");
-    final urlPendientes =
-        Uri.parse("http://$ipServidor:3000/reportes/pendientes");
-    final urlDevueltos =
-        Uri.parse("http://$ipServidor:3000/reportes/devueltos");
+    final urlTotal = Uri.parse("$ipServidor/reportes/total");
+    final urlPendientes = Uri.parse("$ipServidor/reportes/pendientes");
+    final urlDevueltos = Uri.parse("$ipServidor/reportes/devueltos");
     final headers = {"Authorization": "Bearer ${tokenGlobal ?? ""}"};
     try {
       final resTotal = await http.get(urlTotal, headers: headers);
@@ -2338,11 +2254,9 @@ class GraficasReportesState extends State<GraficasReportes> {
   int devueltos = 0;
 
   Future<void> obtenerReportes() async {
-    final urlTotal = Uri.parse("http://$ipServidor:3000/reportes/total");
-    final urlPendientes =
-        Uri.parse("http://$ipServidor:3000/reportes/pendientes");
-    final urlDevueltos =
-        Uri.parse("http://$ipServidor:3000/reportes/devueltos");
+    final urlTotal = Uri.parse("$ipServidor/reportes/total");
+    final urlPendientes = Uri.parse("$ipServidor/reportes/pendientes");
+    final urlDevueltos = Uri.parse("$ipServidor/reportes/devueltos");
     final headers = {"Authorization": "Bearer ${tokenGlobal ?? ""}"};
     try {
       final resTotal = await http.get(urlTotal, headers: headers);
@@ -2382,9 +2296,7 @@ class GraficasReportesState extends State<GraficasReportes> {
                 BarChartData(
                   alignment: BarChartAlignment.spaceAround,
                   maxY:
-                      (pendientes > devueltos ? pendientes : devueltos)
-                              .toDouble() +
-                          1,
+                      (pendientes > devueltos ? pendientes : devueltos).toDouble() + 1,
                   barTouchData: BarTouchData(enabled: false),
                   titlesData: FlTitlesData(
                     show: true,
@@ -2485,9 +2397,8 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
   bool cargando = false;
   bool descargando = false;
 
-  String _fmt(DateTime? d) => d == null
-      ? ""
-      : "${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}";
+  String _fmt(DateTime? d) =>
+      d == null ? "" : "${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}";
 
   Future<void> _pickDate(bool isInicio) async {
     final picked = await showDatePicker(
@@ -2510,7 +2421,7 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
   Future<void> buscar() async {
     setState(() => cargando = true);
     final url = Uri.parse(
-      "http://$ipServidor:3000/reportes/filtrados"
+      "$ipServidor/reportes/filtrados"
       "?maestro=${maestroController.text.trim()}"
       "&fecha_inicio=${_fmt(fechaInicio)}"
       "&fecha_fin=${_fmt(fechaFin)}",
@@ -2538,7 +2449,7 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
   Future<void> descargarArchivo(String tipo) async {
     setState(() => descargando = true);
     final url = Uri.parse(
-      "http://$ipServidor:3000/reportes/$tipo"
+      "$ipServidor/reportes/$tipo"
       "?maestro=${maestroController.text.trim()}"
       "&fecha_inicio=${_fmt(fechaInicio)}"
       "&fecha_fin=${_fmt(fechaFin)}",
@@ -2551,9 +2462,7 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
       );
 
       if (response.statusCode != 200 ||
-          response.headers['content-type']
-                  ?.contains('application/json') ==
-              true) {
+          response.headers['content-type']?.contains('application/json') == true) {
         String mensajeError = "Error del servidor";
         try {
           final jsonError = jsonDecode(response.body);
@@ -2630,8 +2539,7 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide:
-                  const BorderSide(color: Color(0xFF3F51B5), width: 2),
+              borderSide: const BorderSide(color: Color(0xFF3F51B5), width: 2),
             ),
           ),
           child: Text(
@@ -2652,8 +2560,7 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
         foregroundColor: Colors.black,
         elevation: 0,
         title: const Text("Reportes Filtrados",
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -2681,8 +2588,8 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
                     decoration: InputDecoration(
                       labelText: "Docente",
                       labelStyle: const TextStyle(color: Colors.black54),
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 18, horizontal: 16),
+                      contentPadding:
+                          const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(color: Colors.grey.shade300),
@@ -2693,8 +2600,8 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                            color: Color(0xFF3F51B5), width: 2),
+                        borderSide:
+                            const BorderSide(color: Color(0xFF3F51B5), width: 2),
                       ),
                     ),
                   ),
@@ -2751,8 +2658,7 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                     ),
-                    onPressed:
-                        descargando ? null : () => descargarArchivo("pdf"),
+                    onPressed: descargando ? null : () => descargarArchivo("pdf"),
                   ),
                 ),
                 const SizedBox(width: 14),
@@ -2841,9 +2747,6 @@ class ReportesFiltradosState extends State<ReportesFiltrados> {
 
 /* ============================================================
    🆕 GUÍA 17: HISTORIAL DETALLADO DE PRÉSTAMOS
-   - Filtros por maestro, material y fechas
-   - Exportación a PDF y Excel
-   - Guardado y apertura automática del archivo
    ============================================================ */
 class HistorialPrestamos extends StatefulWidget {
   const HistorialPrestamos({super.key});
@@ -2897,7 +2800,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
 
   Future<void> obtenerHistorial() async {
     setState(() => cargando = true);
-    final url = Uri.parse("http://$ipServidor:3000/historial${_buildQuery()}");
+    final url = Uri.parse("$ipServidor/historial${_buildQuery()}");
     try {
       final response = await http.get(
         url,
@@ -2923,7 +2826,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
   Future<void> descargarArchivo(String tipo) async {
     setState(() => descargando = true);
     final url =
-        Uri.parse("http://$ipServidor:3000/historial/$tipo${_buildQuery()}");
+        Uri.parse("$ipServidor/historial/$tipo${_buildQuery()}");
 
     try {
       final response = await http.get(
@@ -2932,9 +2835,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
       );
 
       if (response.statusCode != 200 ||
-          response.headers['content-type']
-                  ?.contains('application/json') ==
-              true) {
+          response.headers['content-type']?.contains('application/json') == true) {
         String mensajeError = "Error del servidor";
         try {
           final jsonError = jsonDecode(response.body);
@@ -3011,8 +2912,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide:
-                  const BorderSide(color: Color(0xFF3F51B5), width: 2),
+              borderSide: const BorderSide(color: Color(0xFF3F51B5), width: 2),
             ),
           ),
           child: Text(
@@ -3033,8 +2933,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
         foregroundColor: Colors.white,
         elevation: 0,
         title: const Text("Historial de Préstamos",
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -3075,8 +2974,8 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                            color: Color(0xFF673AB7), width: 2),
+                        borderSide:
+                            const BorderSide(color: Color(0xFF673AB7), width: 2),
                       ),
                     ),
                   ),
@@ -3099,8 +2998,8 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                            color: Color(0xFF673AB7), width: 2),
+                        borderSide:
+                            const BorderSide(color: Color(0xFF673AB7), width: 2),
                       ),
                     ),
                   ),
@@ -3156,7 +3055,6 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
               ),
             ),
             const SizedBox(height: 20),
-
             Row(
               children: [
                 Expanded(
@@ -3172,8 +3070,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                     ),
-                    onPressed:
-                        descargando ? null : () => descargarArchivo("pdf"),
+                    onPressed: descargando ? null : () => descargarArchivo("pdf"),
                   ),
                 ),
                 const SizedBox(width: 14),
@@ -3190,14 +3087,12 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                     ),
-                    onPressed:
-                        descargando ? null : () => descargarArchivo("excel"),
+                    onPressed: descargando ? null : () => descargarArchivo("excel"),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
-
             if (cargando)
               const Padding(
                 padding: EdgeInsets.all(40),
@@ -3232,8 +3127,7 @@ class HistorialPrestamosState extends State<HistorialPrestamos> {
                         borderRadius: BorderRadius.circular(14)),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundColor:
-                            devuelto ? Colors.green : Colors.orange,
+                        backgroundColor: devuelto ? Colors.green : Colors.orange,
                         child: Icon(
                           devuelto ? Icons.check : Icons.hourglass_empty,
                           color: Colors.white,
