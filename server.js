@@ -17,7 +17,7 @@ app.use(cors());
 
 const SECRET = "clave_secreta_inventario";
 
-// 🔥 CONEXIÓN USANDO POOL (Soluciona el error de "Connection is closed")
+// 🔥 CONEXIÓN CON POOL CORREGIDO PARA RAILWAY
 const conexion = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
@@ -25,13 +25,25 @@ const conexion = mysql.createPool({
   database: process.env.MYSQLDATABASE,
   port: process.env.MYSQLPORT,
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: 5,
   queueLimit: 0,
   enableKeepAlive: true,
-  keepAliveInitialDelay: 0,
+  keepAliveInitialDelay: 10000,
+  connectTimeout: 30000,
+  acquireTimeout: 30000,
+  timeout: 60000,
 });
 
-// Probar conexión
+conexion.on('connection', (conn) => {
+  conn.on('error', (err) => {
+    console.error('❌ Error en conexión MySQL:', err.code);
+  });
+});
+
+conexion.on('error', (err) => {
+  console.error('❌ Error en pool MySQL:', err.code);
+});
+
 conexion.getConnection((err, conn) => {
   if (err) {
     console.error("❌ Error al conectar a la base de datos:", err);
@@ -598,7 +610,6 @@ app.use("/uploads", express.static(CARPETA_UPLOADS));
 
 app.get("/generar-qr", (req, res) => { generarTodosLosQR(); res.json({ status: "ok" }); });
 
-// 🔥 Puerto dinámico para Railway
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
